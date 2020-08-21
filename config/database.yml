@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: dev-notes_development
+
+test:
+  <<: *default
+  database: dev-notes_test
+
+production:
+  <<: *default
+  database: dev-notes_production
+  username: dev_notes
+  password: <%= ENV['DEV-NOTES_DATABASE_PASSWORD'] %>
