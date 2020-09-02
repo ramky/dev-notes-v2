@@ -9,3 +9,4 @@ class AddCountsToTopics < ActiveRecord::Migration[6.0]
     SQL
   end
 end
+``
