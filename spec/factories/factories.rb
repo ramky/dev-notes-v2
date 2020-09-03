@@ -5,13 +5,13 @@ FactoryBot.define do
   end
 
   factory :topic do
-    name             {  Faker::Lorem.words(4).join(' ') }
-    description      {  Faker::Lorem.sentences(1).join(' ') }
+    name             {  Faker::Lorem.words(number: 4).join(' ') }
+    description      {  Faker::Lorem.sentences(number: 1).join(' ') }
   end
 
   factory :note do
-    title            { Faker::Lorem.words(4).join(' ') }
-    text             { Faker::Lorem.sentences(1).join(' ') }
+    title            { Faker::Lorem.words(number: 4).join(' ') }
+    text             { Faker::Lorem.sentences(number: 1).join(' ') }
   end
 
   factory :type do
