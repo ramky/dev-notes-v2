@@ -1,6 +1,7 @@
 class Topic < ActiveRecord::Base
-  # include ActionView::Helpers::DateHelper
-  # include Model::Common
+  include ActionView::Helpers::DateHelper
+  include Model::Common
+
   has_many :notes
   belongs_to :account
 
@@ -17,4 +18,3 @@ class Topic < ActiveRecord::Base
         order("notes.updated_at desc")
     }
 end
-  

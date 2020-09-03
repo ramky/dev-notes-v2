@@ -5,9 +5,11 @@ RSpec.describe Topic, type: :model do
   it { should belong_to(:account) }
   it { should validate_presence_of(:name)  }
 
+  let(:account) {create(:account)}
+
   it 'should order by name' do
-    topic1 = create(:topic)
-    topic2 = create(:topic, name: 'Rails Setup')
+    topic1 = create(:topic, account: account)
+    topic2 = create(:topic, name: 'Rails Setup', account: account)
 
     expect(Topic.first.name).to eq 'Rails Setup'
   end
@@ -33,6 +35,7 @@ RSpec.describe Topic, type: :model do
       type  = create(:type)
       note1  = create(:note, topic_id: topic.id, type_id: type.id)
       note2  = create(:note, topic_id: topic.id, type_id: type.id)
+      topic.reload
 
       expect(topic.notes_count).to eq(2)
     end
