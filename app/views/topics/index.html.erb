@@ -1,0 +1,30 @@
+<h1 class="heading">Topics</h1>
+
+<% @topics.each do |topic| %>
+  <ul class="topic inline">
+    <li class="medium_list"><%= link_to topic.name, edit_topic_path(topic) %></li>
+    <li class="medium_list"><%= topic.notes_count %> Notes</li>
+    <li class="medium_list"><%= topic.last_updated %></li>
+    <li>
+      <%= link_to topic, title: 'Show Topic' do %>
+        <i class="fa fa-list-alt"></i>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to edit_topic_path(topic), title: 'Edit Topic' do %>
+        <i class="fa fa-pencil-square-o"></i>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to topic, method: :delete, data: { confirm: 'Are you sure?' }, title: 'Delete Topic' do %>
+        <i class="fa fa-trash-o"></i>
+      <% end %>
+    </li>
+  </ul>
+<% end %>
+
+<div class="center">
+  <%= paginate @topics %>
+</div>
+
+<%= render 'shared/topics_footer' %>
