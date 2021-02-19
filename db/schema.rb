@@ -15,47 +15,49 @@ ActiveRecord::Schema.define(version: 2020_09_03_033759) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "accounts", force: :cascade do |t|
+  create_table "accounts", id: :serial, force: :cascade do |t|
     t.string "provider"
     t.string "uid"
     t.string "name"
     t.string "oauth_token"
     t.datetime "oauth_expires_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "password_digest"
+    t.string "email_address"
   end
 
-  create_table "authen_whitelists", force: :cascade do |t|
+  create_table "authen_whitelists", id: :serial, force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  create_table "notes", force: :cascade do |t|
+  create_table "notes", id: :serial, force: :cascade do |t|
     t.string "title"
     t.text "text"
     t.string "encrypted_text"
     t.integer "type_id"
     t.integer "topic_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "topics", force: :cascade do |t|
+  create_table "topics", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.integer "account_id"
     t.integer "notes_count", default: 0, null: false
     t.index ["account_id"], name: "index_topics_on_account_id"
   end
 
-  create_table "types", force: :cascade do |t|
+  create_table "types", id: :serial, force: :cascade do |t|
     t.string "title"
     t.string "additional1"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
