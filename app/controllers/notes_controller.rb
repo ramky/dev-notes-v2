@@ -11,6 +11,7 @@ class NotesController < ApplicationController
 
   # GET /notes/1
   def show
+    render json: { note: @note }.to_json, status: :ok
   end
 
   # GET /notes/new

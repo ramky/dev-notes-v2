@@ -11,8 +11,9 @@ gem 'webpacker', '~> 4.0'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'bootsnap', '>= 1.4.2', require: false
-# TODO: Do we need this if React and GraphQL?
-gem 'kaminari'
+
+# TODO: Do we need this with React and GraphQL?
+gem 'will_paginate'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

@@ -5,14 +5,16 @@ class TopicsController < ApplicationController
 
   # GET /topics
   def index
-    @topics = Topic.all_for_account(
-      2).
-      # session[:account_id]).
-      page(params[:page]).per(ENTRIES_PER_PAGE)
+    # @topics = Topic.all_for_account(
+    #   2).
+    #   # session[:account_id]).
+    #   page(params[:page]).per(ENTRIES_PER_PAGE)
+    render json: { topic: Topic.all_for_account(2) }.to_json, status: :ok
   end
 
   # GET /topics/1
   def show
+    render json: { topic: @topic }.to_json, status: :ok
   end
 
   # GET /topics/new
@@ -23,10 +25,12 @@ class TopicsController < ApplicationController
   # GET /topics/1/edit
   def edit
     #@notes = @topic.notes.page(params[:page]).per(ENTRIES_PER_PAGE)
-    @notes = Topic.
-      notes_for_topic(@topic.id).
-      page(params[:page]).
-      per(ENTRIES_PER_PAGE)
+    # @notes = Topic.
+    #   notes_for_topic(@topic.id).
+    #   page(params[:page]).
+    #   per(ENTRIES_PER_PAGE)
+    @notes = Topic.notes_for_topic(@topic.id).paginate(page: params[:page] || 1, per_page: ENTRIES_PER_PAGE)
+    render json: { notes: @notes }.to_json, status: :ok
   end
 
   # POST /topics

@@ -1,32 +1,36 @@
+<%
+=begin%>
 <h1 class="heading"><%= @note.title %></h1>
 <div id="note">
   <div>
     <% if @note.password? %>
-      <%= @note.text %> /
-      <% if @note.password? %>
-        <%= link_to 'Copy Password to Clipboard', '#', data: { 'clipboard-target' => 'input-to-copy' }, id: 'copy-trigger' %>
-        <input type="hidden" id="input-to-copy" value="<%= @note.decrypted_text %>" />
-      <% end %>
+    <%= @note.text %> /
+    <% if @note.password? %>
+    <%= link_to 'Copy Password to Clipboard', '#', data: { 'clipboard-target' => 'input-to-copy' }, id: 'copy-trigger' %>
+    <input type="hidden" id="input-to-copy" value="<%= @note.decrypted_text %>" />
+    <% end %>
     <% elsif @note.markdown? %>
-      <%= markdown(@note.text) %>
+    <%= markdown(@note.text) %>
     <% elsif @note.vim_note? %>
-      <% @note.notes_by_line.each do |vim_note| %>
-        <div class="with_spaces">
-          <kbd class="dark"><%= vim_note %></kbd>
-        </div>
-      <% end %>
+    <% @note.notes_by_line.each do |vim_note| %>
+    <div class="with_spaces">
+      <kbd class="dark"><%= vim_note %></kbd>
+    </div>
+    <% end %>
     <% elsif @note.quote? %>
-      <% @note.notes_by_line.each do |quote_note| %>
-        <% (quote, author) = split_quote(quote_note) %>
-        <blockquote class="quote">
-          <%= quote %>
-          <cite><%= author %></cite>
-        </blockquote>
-      <% end %>
+    <% @note.notes_by_line.each do |quote_note| %>
+    <% (quote, author) = split_quote(quote_note) %>
+    <blockquote class="quote">
+      <%= quote %>
+      <cite><%= author %></cite>
+    </blockquote>
+    <% end %>
     <% else %>
-      <%= raw @note.text %>
+    <%= raw @note.text %>
     <% end %>
   </div>
 </div>
 
 <%= render 'shared/notes_footer' %>
+<%
+=end%>
