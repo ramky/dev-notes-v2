@@ -1,7 +1,8 @@
 FactoryBot.define do
   factory :account do
-    provider         { 'facebook' }
     name             { 'Ram Iyer' }
+    email_address    { Faker::Internet.email }
+    password { 'test123456' }
   end
 
   factory :topic do
